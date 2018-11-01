@@ -7,7 +7,7 @@ class TVSeries extends \Illuminate\Database\Eloquent\Model
 }
 
 // Añadir el resto del código aquí
-$app->get('/videogames', function ($req, $res, $args) {
+$app->get('/tvseries', function ($req, $res, $args) {
 
     // Creamos un objeto collection + json con la lista de películas
 
@@ -22,7 +22,7 @@ $app->get('/videogames', function ($req, $res, $args) {
 
 
 /*  Obtención de un videojuego en concreto  */
-$app->get('/videogames/{name}', function ($req, $res, $args) {
+$app->get('/tvseries/{name}', function ($req, $res, $args) {
 
     // Creamos un objeto collection + json con el videojuego pasada como parámetro
 
@@ -38,7 +38,7 @@ $app->get('/videogames/{name}', function ($req, $res, $args) {
 });
 
 /*  Eliminacion de un videojuego en concreto  */
-$app->delete('/videogames/{name}', function ($req, $res, $args) {
+$app->delete('/tvseries/{name}', function ($req, $res, $args) {
 	
     // Obtenemos el videojuego de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
     $p = \TVSeries::find($args['name']); 
@@ -47,7 +47,7 @@ $app->delete('/videogames/{name}', function ($req, $res, $args) {
 });
 
 /*Crea un nuevo videojuego con los datos recibidos*/
-$app->post('/videogames', function ($req, $res, $args) {
+$app->post('/tvseries', function ($req, $res, $args) {
     //Código para peticiones de POST (creación de items)
     $template = $req->getParsedBody();
     $datos = $template['template']['data'];  
@@ -95,7 +95,7 @@ $app->post('/videogames', function ($req, $res, $args) {
 
 //Actualizar videojuego
 
-$app->put('/videogames/{name}', function ($req, $res, $args) {
+$app->put('/tvseries/{name}', function ($req, $res, $args) {
 
 	// Creamos un objeto collection + json con el libro pasado como parámetro
 
