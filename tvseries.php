@@ -1,7 +1,7 @@
 <?php
 
 // Modelo de objetos que se corresponde con la tabla de MySQL
-class Videogame extends \Illuminate\Database\Eloquent\Model
+class TVSeries extends \Illuminate\Database\Eloquent\Model
 {
 	public $timestamps = false;
 }
@@ -12,7 +12,7 @@ $app->get('/videogames', function ($req, $res, $args) {
     // Creamos un objeto collection + json con la lista de películas
 
     // Obtenemos la lista de películas de la base de datos y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
-    $juegos = json_decode(\VideoGame::all());
+    $juegos = json_decode(\TVSeries::all());
 
     // Mostramos la vista
     return $this->view->render($res, 'videogamelist_template.php', [
@@ -27,7 +27,7 @@ $app->get('/videogames/{name}', function ($req, $res, $args) {
     // Creamos un objeto collection + json con el videojuego pasada como parámetro
 
     // Obtenemos el videojuego de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
-    $p = \VideoGame::find($args['name']);  
+    $p = \TVSeries::find($args['name']);  
     $juego = json_decode($p);
 
     // Mostramos la vista
@@ -41,7 +41,7 @@ $app->get('/videogames/{name}', function ($req, $res, $args) {
 $app->delete('/videogames/{name}', function ($req, $res, $args) {
 	
     // Obtenemos el videojuego de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
-    $p = \VideoGame::find($args['name']); 
+    $p = \TVSeries::find($args['name']); 
     $p->delete();
 
 });
@@ -80,7 +80,7 @@ $app->post('/videogames', function ($req, $res, $args) {
         }    
     }
   
-    $videogame = new Videogame;
+    $videogame = new TVSeries;
     $videogame->name = $name;
     $videogame->description = $desc;
     $videogame->gamePlatform = $plataf;
@@ -100,7 +100,7 @@ $app->put('/videogames/{name}', function ($req, $res, $args) {
 	// Creamos un objeto collection + json con el libro pasado como parámetro
 
 	// Obtenemos el libro de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
-	$nuevo_videogame = \VideoGame::find($args['name']);	
+	$nuevo_videogame = \TVSeries::find($args['name']);	
 
     $template = $req->getParsedBody();
 
