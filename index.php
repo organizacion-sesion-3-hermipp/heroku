@@ -2,10 +2,10 @@
 
 require 'App.php';
 
-#$app = (new App())->get();
-#$app->run();
+$app = (new App())->get();
+$app->run();
 
-echo "Hola Mundo";
+
 
 
 ?>
