@@ -1,11 +1,11 @@
 <?php
 
 // Cargar Slim Framework y Eloquent a través de Composer
-require 'App.php';
+#require 'App.php';
 
-$app = (new App())->get();
-$app->run();
-
+#$app = (new App())->get();
+#$app->run();
+echo "Hola Mundo";
 
 
 ?>
