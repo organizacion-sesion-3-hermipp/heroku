@@ -28,7 +28,7 @@ class RootTest extends PHPUnit_Framework_TestCase
         $data = json_decode($response->getBody(), true);
         // collection.type tiene que ser 'index'
         $this->assertSame($data['collection']['type'], 'index');
-        // collection.links tiene que tener longitud 4
+        // collection.links tiene que tener longitud 5
         $this->assertCount(5, $data['collection']['links']);
     } 
 

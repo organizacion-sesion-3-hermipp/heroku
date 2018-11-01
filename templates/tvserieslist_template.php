@@ -18,7 +18,7 @@
                 {% for item in items %}
 	  
                 {
-                    "href" : "{{ path_for('games') }}/{{ item.id }}",
+                    "href" : "{{ path_for('tvseries') }}/{{ item.id }}",
                         "data" : [
                             {"name" : "name", "value" : "{{ item.name }}", "prompt" : "Nombre de la Serie"}
                         ]
@@ -32,7 +32,7 @@
             "data" : [
                 {"name" : "name", "value" : "{{ item.name }}", "prompt" : "Nombre del Juego"},
                 {"name" : "description", "value" : "{{ item.description }}", "prompt" : "Descripción del Juego"},
-                {"name" : "platform", "value" : "{{ item.director }}", "prompt" : "Plataforma del Juego"},
+                {"name" : "platform", "value" : "{{ item.platform }}", "prompt" : "Plataforma del Juego"},
                 {"name" : "datePublished", "value" : "{{ item.datePublished }}", "prompt" : "Fecha de lanzamiento"}
             ]
                 }

@@ -16,7 +16,7 @@ $app->get('/tvseries', function ($req, $res, $args) {
 
     // Mostramos la vista
     return $this->view->render($res, 'tvserieslist_template.php', [
-        'items' => $tveseries
+        'items' => $tvseries
     ]);
 })->setName('tvseries');
 
@@ -40,7 +40,7 @@ $app->get('/tvseries/{name}', function ($req, $res, $args) {
 /*  Eliminacion de un videojuego en concreto  */
 $app->delete('/tvseries/{name}', function ($req, $res, $args) {
 	
-    // Obtenemos el videojuego de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
+    // Obtenemos la serie de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
     $p = \TVSeries::find($args['name']); 
     $p->delete();
 
