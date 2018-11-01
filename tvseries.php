@@ -3,6 +3,7 @@
 // Modelo de objetos que se corresponde con la tabla de MySQL
 class TVSeries extends \Illuminate\Database\Eloquent\Model
 {
+	protected $table='tvseries';
 	public $timestamps = false;
 }
 
