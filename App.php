@@ -83,7 +83,7 @@ require 'musicalbums.php';
 // Script para tareas relacionadas con videojuegos
 require 'videogames.php';
 
-// Script para tareas relacionadas con videojuegos
+// Script para tareas relacionadas con series
 require 'tvseries.php';
 
 $this->app = $app;

@@ -46,7 +46,7 @@ $app->delete('/tvseries/{name}', function ($req, $res, $args) {
 
 });
 
-/*Crea un nuevo videojuego con los datos recibidos*/
+/*Crea una nueva serie con los datos recibidos*/
 $app->post('/tvseries', function ($req, $res, $args) {
     //Código para peticiones de POST (creación de items)
     $template = $req->getParsedBody();
@@ -62,32 +62,22 @@ $app->post('/tvseries', function ($req, $res, $args) {
         case "description":
             $desc = $datos[$i]['value'];
             break;
-        case "gamePlatform":
+        case "platform":
             $plataf = $datos[$i]['value'];
-            break;
-        case "applicationSubCategory":
-            $category = $datos[$i]['value'];
-            break;
-        case "screenshot":
-            $screenshot = $datos[$i]['value'];
             break;
         case "datePublished":
             $date = $datos[$i]['value'];
             break;
-        case "embedUrl":
-            $embedUrl = $datos[$i]['value'];
-            break;		
+	
         }    
     }
   
     $serie = new TVSeries;
     $serie->name = $name;
     $serie->description = $desc;
-    $serie->gamePlatform = $plataf;
-    $serie->applicationSubCategory = $category;
-    $serie->screenshot =  $screenshot;
+    $serie->platform = $plataf;
     $serie->datePublished = $date;
-    $serie->embedUrl = $embedUrl;
+
   
     $serie->save();
 });
@@ -115,21 +105,11 @@ $app->put('/tvseries/{name}', function ($req, $res, $args) {
         case "description":
             $description = $item['value'];
             break;
-        case "gamePlatform":
-            $gamePlatform = $item['value'];
+        case "platform":
+            $tvseriesPlatform = $item['value'];
             break;
 
-        case "applicationSubCategory":
-            $applicationSubCategory = $item['value'];
-            break;
-
-        case "screenshot":
-            $screenshot = $item['value'];
-            break;
-				
-        case "embedUrl":
-            $embedUrl = $item['value'];
-            break;
+        
         case "datePublished":
             $datePublished = $item['value'];
             break;
@@ -138,10 +118,7 @@ $app->put('/tvseries/{name}', function ($req, $res, $args) {
 
 	$nueva_serie['name'] = $name;
 	$nueva_serie['description'] = $description;
-	$nueva_serie['gamePlatform'] = $gamePlatform;
-	$nueva_serie['applicationSubCategory'] = $applicationSubCategory;
-	$nueva_serie['screenshot'] = $screenshot;
-	$nueva_serie['embedUrl'] = $embedUrl;
+	$nueva_serie['platform'] = $tvseriesPlatform;
 	$nueva_serie['datePublished'] = $datePublished;
 	$nueva_serie->save();
 
