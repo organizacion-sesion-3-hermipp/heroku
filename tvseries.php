@@ -12,13 +12,13 @@ $app->get('/tvseries', function ($req, $res, $args) {
     // Creamos un objeto collection + json con la lista de películas
 
     // Obtenemos la lista de películas de la base de datos y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
-    $juegos = json_decode(\TVSeries::all());
+    $series = json_decode(\TVSeries::all());
 
     // Mostramos la vista
     return $this->view->render($res, 'tvserieslist_template.php', [
-        'items' => $juegos
+        'items' => $series
     ]);
-})->setName('games');
+})->setName('tvseries');
 
 
 /*  Obtención de un videojuego en concreto  */
@@ -28,11 +28,11 @@ $app->get('/tvseries/{name}', function ($req, $res, $args) {
 
     // Obtenemos el videojuego de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
     $p = \TVSeries::find($args['name']);  
-    $juego = json_decode($p);
+    $serie = json_decode($p);
 
     // Mostramos la vista
     return $this->view->render($res, 'tvseries_template.php', [
-        'item' => $juego
+        'item' => $serie
     ]);
 
 });
@@ -62,34 +62,22 @@ $app->post('/tvseries', function ($req, $res, $args) {
         case "description":
             $desc = $datos[$i]['value'];
             break;
-        case "gamePlatform":
+        case "platform":
             $plataf = $datos[$i]['value'];
-            break;
-        case "applicationSubCategory":
-            $category = $datos[$i]['value'];
-            break;
-        case "screenshot":
-            $screenshot = $datos[$i]['value'];
             break;
         case "datePublished":
             $date = $datos[$i]['value'];
             break;
-        case "embedUrl":
-            $embedUrl = $datos[$i]['value'];
-            break;		
         }    
     }
   
-    $videogame = new TVSeries;
-    $videogame->name = $name;
-    $videogame->description = $desc;
-    $videogame->gamePlatform = $plataf;
-    $videogame->applicationSubCategory = $category;
-    $videogame->screenshot =  $screenshot;
-    $videogame->datePublished = $date;
-    $videogame->embedUrl = $embedUrl;
+    $serie = new TVSeries;
+    $serie->name = $name;
+    $serie->description = $desc;
+    $serie->platform = $plataf;
+    $serie->datePublished = $date;
   
-    $videogame->save();
+    $serie->save();
 });
 
 
@@ -100,7 +88,7 @@ $app->put('/tvseries/{name}', function ($req, $res, $args) {
 	// Creamos un objeto collection + json con el libro pasado como parámetro
 
 	// Obtenemos el libro de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
-	$nuevo_videogame = \TVSeries::find($args['name']);	
+	$nuevo_serie = \TVSeries::find($args['name']);	
 
     $template = $req->getParsedBody();
 
@@ -115,21 +103,10 @@ $app->put('/tvseries/{name}', function ($req, $res, $args) {
         case "description":
             $description = $item['value'];
             break;
-        case "gamePlatform":
-            $gamePlatform = $item['value'];
+        case "platform":
+            $platform = $item['value'];
             break;
 
-        case "applicationSubCategory":
-            $applicationSubCategory = $item['value'];
-            break;
-
-        case "screenshot":
-            $screenshot = $item['value'];
-            break;
-				
-        case "embedUrl":
-            $embedUrl = $item['value'];
-            break;
         case "datePublished":
             $datePublished = $item['value'];
             break;
@@ -138,10 +115,7 @@ $app->put('/tvseries/{name}', function ($req, $res, $args) {
 
 	$nuevo_videogame['name'] = $name;
 	$nuevo_videogame['description'] = $description;
-	$nuevo_videogame['gamePlatform'] = $gamePlatform;
-	$nuevo_videogame['applicationSubCategory'] = $applicationSubCategory;
-	$nuevo_videogame['screenshot'] = $screenshot;
-	$nuevo_videogame['embedUrl'] = $embedUrl;
+	$nuevo_videogame['gamePlatform'] = $platform;
 	$nuevo_videogame['datePublished'] = $datePublished;
 	$nuevo_videogame->save();
 
