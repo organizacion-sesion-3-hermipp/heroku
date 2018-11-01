@@ -1,12 +1,12 @@
 { "collection" :
     {
-        "title" : "TVSeries Database",
-            "type" : "TVSeries",
+        "title" : "VideoGame Database",
+            "type" : "VideoGame",
             "version" : "1.0",
-            "href" : "{{ path_for('tvseries')}}",
+            "href" : "{{ path_for('games')}}",
 
             "links" : [
-                {"rel" : "profile" , "href" : "http://schema.org/tvseries","prompt":"Perfil"},
+                {"rel" : "profile" , "href" : "http://schema.org/videogames","prompt":"Perfil"},
                 {"rel" : "collection", "href" : "{{ path_for('movies') }}","prompt":"Movies"},
                 {"rel" : "collection", "href" : "{{ path_for('books') }}","prompt":"Books"},
                 {"rel" : "collection", "href" : "{{ path_for('musicalbums') }}","prompt":"Music Albums"},
@@ -20,7 +20,7 @@
                 {
                     "href" : "{{ path_for('tvseries') }}/{{ item.id }}",
                         "data" : [
-                            {"name" : "name", "value" : "{{ item.name }}", "prompt" : "Nombre de la Serie"}
+                            {"name" : "name", "value" : "{{ item.name }}", "prompt" : "Nombre de la serie"}
                         ]
                         } {% if not loop.last %},{% endif %}
 	  
@@ -30,10 +30,10 @@
       
             "template" : {
             "data" : [
-                {"name" : "name", "value" : "{{ item.name }}", "prompt" : "Nombre del Juego"},
-                {"name" : "description", "value" : "{{ item.description }}", "prompt" : "Descripción del Juego"},
-                {"name" : "platform", "value" : "{{ item.platform }}", "prompt" : "Plataforma del Juego"},
-                {"name" : "datePublished", "value" : "{{ item.datePublished }}", "prompt" : "Fecha de lanzamiento"}
+                {"name" : "name", "value" : "{{ item.name }}", "prompt" : "Nombre de la serie"},
+                {"name" : "description", "value" : "{{ item.description }}", "prompt" : "Descripción de la serie"},
+                {"name" : "platform", "value" : "{{ item.platform }}", "prompt" : "Plataforma de la serie"},
+                {"name" : "datePublished", "value" : "{{ item.datePublished }}", "prompt" : "Fecha de lanzamiento"}              
             ]
                 }
     } 

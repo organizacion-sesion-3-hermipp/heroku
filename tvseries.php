@@ -9,10 +9,10 @@ class TVSeries extends \Illuminate\Database\Eloquent\Model
 // Añadir el resto del código aquí
 $app->get('/tvseries', function ($req, $res, $args) {
 
-    // Creamos un objeto collection + json con la lista de series
+    // Creamos un objeto collection + json con la lista de películas
 
-    // Obtenemos la lista de series de la base de datos y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
-    $juegos = json_decode(\TVSeries::all());
+    // Obtenemos la lista de películas de la base de datos y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
+    $tvseries = json_decode(\TVSeries::all());
 
     // Mostramos la vista
     return $this->view->render($res, 'tvserieslist_template.php', [
@@ -24,15 +24,15 @@ $app->get('/tvseries', function ($req, $res, $args) {
 /*  Obtención de un videojuego en concreto  */
 $app->get('/tvseries/{name}', function ($req, $res, $args) {
 
-    // Creamos un objeto collection + json con la serie pasada como parámetro
+    // Creamos un objeto collection + json con el videojuego pasada como parámetro
 
     // Obtenemos el videojuego de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
     $p = \TVSeries::find($args['name']);  
-    $juego = json_decode($p);
+    $serie = json_decode($p);
 
     // Mostramos la vista
     return $this->view->render($res, 'tvseries_template.php', [
-        'item' => $tvseries
+        'item' => $serie
     ]);
 
 });
@@ -40,13 +40,13 @@ $app->get('/tvseries/{name}', function ($req, $res, $args) {
 /*  Eliminacion de un videojuego en concreto  */
 $app->delete('/tvseries/{name}', function ($req, $res, $args) {
 	
-    // Obtenemos la serie de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
+    // Obtenemos el videojuego de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
     $p = \TVSeries::find($args['name']); 
     $p->delete();
 
 });
 
-/*Crea una nueva serie con los datos recibidos*/
+/*Crea un nuevo videojuego con los datos recibidos*/
 $app->post('/tvseries', function ($req, $res, $args) {
     //Código para peticiones de POST (creación de items)
     $template = $req->getParsedBody();
@@ -68,18 +68,16 @@ $app->post('/tvseries', function ($req, $res, $args) {
         case "datePublished":
             $date = $datos[$i]['value'];
             break;
-	
         }    
     }
   
-    $serie = new TVSeries;
-    $serie->name = $name;
-    $serie->description = $desc;
-    $serie->platform = $plataf;
-    $serie->datePublished = $date;
-
+    $tvseries = new TVSeries;
+    $tvseries->name = $name;
+    $tvseries->description = $desc;
+    $tvseries->platform = $plataf;
+    $tvseries->datePublished = $date;
   
-    $serie->save();
+    $tvseries->save();
 });
 
 
@@ -90,7 +88,7 @@ $app->put('/tvseries/{name}', function ($req, $res, $args) {
 	// Creamos un objeto collection + json con el libro pasado como parámetro
 
 	// Obtenemos el libro de la base de datos a partir de su id y la convertimos del formato Json (el devuelto por Eloquent) a un array PHP
-	$nueva_serie = \TVSeries::find($args['name']);	
+	$nuevo_tvseries = \TVSeries::find($args['name']);	
 
     $template = $req->getParsedBody();
 
@@ -106,21 +104,19 @@ $app->put('/tvseries/{name}', function ($req, $res, $args) {
             $description = $item['value'];
             break;
         case "platform":
-            $tvseriesPlatform = $item['value'];
+            $platform = $item['value'];
             break;
-
-        
         case "datePublished":
             $datePublished = $item['value'];
             break;
 		}
 	}
 
-	$nueva_serie['name'] = $name;
-	$nueva_serie['description'] = $description;
-	$nueva_serie['platform'] = $tvseriesPlatform;
-	$nueva_serie['datePublished'] = $datePublished;
-	$nueva_serie->save();
+	$nuevo_tvseries['name'] = $name;
+	$nuevo_tvseries['description'] = $description;
+	$nuevo_tvseries['platform'] = $platform;
+	$nuevo_tvseries['datePublished'] = $datePublished;
+	$nuevo_tvseries->save();
 
 });
 
