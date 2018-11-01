@@ -15,7 +15,7 @@ $app->get('/tvseries', function ($req, $res, $args) {
     $juegos = json_decode(\TVSeries::all());
 
     // Mostramos la vista
-    return $this->view->render($res, 'videogamelist_template.php', [
+    return $this->view->render($res, 'tvserieslist_template.php', [
         'items' => $juegos
     ]);
 })->setName('games');
@@ -31,7 +31,7 @@ $app->get('/tvseries/{name}', function ($req, $res, $args) {
     $juego = json_decode($p);
 
     // Mostramos la vista
-    return $this->view->render($res, 'videogame_template.php', [
+    return $this->view->render($res, 'tvseries_template.php', [
         'item' => $juego
     ]);
 
