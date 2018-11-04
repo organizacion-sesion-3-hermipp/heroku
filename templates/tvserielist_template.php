@@ -1,7 +1,7 @@
 { "collection" :
     {
-        "title" : "TVSeries Database",
-            "type" : "TVSeries",
+        "title" : "Tvserie Database",
+            "type" : "Tvserie",
             "version" : "1.0",
             "href" : "{{ path_for('tvseries')}}",
 
@@ -11,7 +11,7 @@
                 {"rel" : "collection", "href" : "{{ path_for('books') }}","prompt":"Books"},
                 {"rel" : "collection", "href" : "{{ path_for('musicalbums') }}","prompt":"Music Albums"},
                 {"rel" : "collection", "href" : "{{ path_for('games') }}","prompt":"Videogames"},
-                {"rel" : "collection", "href" : "{{ path_for('tvseries') }}","prompt":"TV Series"}
+                {"rel" : "collection", "href" : "{{ path_for('tvseries') }}","prompt":"Tvseries"}
             ],
       
             "items" : [
@@ -30,9 +30,9 @@
       
             "template" : {
             "data" : [
-                {"name" : "name", "value" : "{{ item.name }}", "prompt" : "Nombre de la Serie"},
-                {"name" : "description", "value" : "{{ item.description }}", "prompt" : "Descripción de la Serie"},
-                {"name" : "platform", "value" : "{{ item.platform }}", "prompt" : "Plataforma de la Serie"},
+                {"name" : "name", "value" : "{{ item.name }}", "prompt" : "Nombre de la serie"},
+                {"name" : "description", "value" : "{{ item.description }}", "prompt" : "Descripción de la serie"},
+                {"name" : "platform", "value" : "{{ item.platform }}", "prompt" : "Plataforma de la serie"},
                 {"name" : "datePublished", "value" : "{{ item.datePublished }}", "prompt" : "Fecha de lanzamiento"}
             ]
                 }
