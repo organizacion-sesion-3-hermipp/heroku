@@ -13,3 +13,6 @@ composer install
 ## Acceso al servidor de producción (Heroku)
 
 http://APP_NAME.herokuapp.com
+
+## La URL para probar es:
+https://curso-github-cefire-hermipp.herokuapp.com/
